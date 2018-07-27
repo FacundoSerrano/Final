@@ -66,6 +66,7 @@ void parseGuardarDatos(ArrayList* lista,char filename[])
             }
         }
         fclose(fp);
+        printf("Se ha generado el archivo %s con exito", filename);
     }
     else
     {
@@ -77,7 +78,7 @@ void parseGuardarDatos(ArrayList* lista,char filename[])
 
 void parseGuardarNotas(ArrayList* lista,char filename[])
 {
-    eAlumno* s;
+    eLetra* s;
     FILE* fp;
     int i;
     if(lista!=NULL)
@@ -87,8 +88,8 @@ void parseGuardarNotas(ArrayList* lista,char filename[])
         {
             for(i=0; i<lista->len(lista); i++)
             {
-                s=(eAlumno*) lista->get(lista,i);
-                fprintf(fp,"%d,%d,%d,%d,%d,%s,%s\n",emp_getId(s),emp_getEstado(s),emp_getLegajo(s),emp_getNota(s),emp_getEdad(s),emp_getSexo(s),emp_getNombre(s));
+                s=(eLetra*) lista->get(lista,i);
+                fprintf(fp,"%c,%s,%d,%d\n",let_getLetra(s),let_getNombre(s),let_getVocal(s),let_getConsonante(s));
             }
         }
         fclose(fp);
@@ -476,6 +477,7 @@ int generic_menu (void)
     printf("1. Listar letras\n");
     printf("2. Completar vocales y consonantes\n");
     printf("3. Mostrar letras coincidentes\n");
+    printf("4. Exportar informacion\n");
 
     printf("\n0. Salir\n");
 
@@ -735,26 +737,28 @@ int setVocalOConsonante(ArrayList* lista)
     return retorno;
 }
 
-ArrayList* funcionLoca(ArrayList* lista, char* cadena)
+ArrayList* funcionLoca(ArrayList* lista, char cadena[])
 {
     eLetra* letras;
     ArrayList* letrasLocas;
+    letrasLocas = al_newArrayList();
     int len;
     int i;
     int j;
     int flag = 0;
     char* letra;
 
-    if(lista!=NULL)
+    if(lista!=NULL && cadena!=NULL)
     {
+        int cadlen = strlen(cadena);
         len=lista->len(lista);
-        for(i = 0; i < 100; i++)
+        for(i = 0; i < cadlen; i++)
         {
             for(j=0; j < len; j++)
             {
                 letras = al_get(lista,j);
                 letra = let_getLetra(letras);
-                if(*(cadena+i) == letra)
+                if(cadena[i] == letra)
                 {
                     al_add(letrasLocas, letras);
                 }
@@ -762,4 +766,24 @@ ArrayList* funcionLoca(ArrayList* lista, char* cadena)
         }
     }
     return letrasLocas;
+}
+
+int tramite_ordenarLetra(void* letra1, void* letra2)
+{
+    int returnAux;
+    eLetra* letraUno = (eLetra*) letra1;
+    eLetra* letraDos = (eLetra*) letra2;
+        if(letraUno->letra > letraDos->letra)
+        {
+            returnAux =1;
+        }
+            else if( letraUno->letra < letraDos->letra)
+            {
+                returnAux =-1;
+            }
+                else
+                {
+                    returnAux = 0;
+                }
+    return returnAux;
 }

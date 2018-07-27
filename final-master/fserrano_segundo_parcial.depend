@@ -146,7 +146,7 @@
 
 1532711060 c:\test\final-master\arraylist.h
 
-1532730020 source:c:\test\final-master\funciones.c
+1532732590 source:c:\test\final-master\funciones.c
 	<stdio.h>
 	<stdio.h>
 	<stdlib.h>
@@ -157,11 +157,11 @@
 	"ArrayList.h"
 	"funciones.h"
 
-1532729302 c:\test\final-master\funciones.h
+1532731407 c:\test\final-master\funciones.h
 	"funciones.h"
 	"ArrayList.h"
 
-1532729958 source:c:\test\final-master\main.c
+1532732143 source:c:\test\final-master\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>

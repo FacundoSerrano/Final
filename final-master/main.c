@@ -12,7 +12,7 @@ int main()
 
     int opcion;
     int salir = 0;
-    char cadena[100];
+    char cadena[25];
 
 
 
@@ -38,22 +38,17 @@ int main()
                 printf("\nIngrese una cadena:\n");
                 fflush(stdin);
                 gets(cadena);
-                funcionLoca(letras, cadena);
+                letrasCoincidentes = funcionLoca(letras, cadena);
+                al_sort(letrasCoincidentes, tramite_ordenarLetra, 0);
                 main_mostrarLista(letrasCoincidentes);
-                //parseGuardarDatos(alumnosMayores,"out.csv");
                 finFuncion();
                 break;
 
-            /*case 4:
-                al_map(alumnos,cargarNota);
-                main_mostrarNota(alumnos);
+            case 4:
+                parseGuardarNotas(letras,"completo.csv");
+                parseGuardarNotas(letrasCoincidentes,"repetido.csv");
                 finFuncion();
                 break;
-
-            case 5:
-                parseGuardarNotas(alumnos,"Notas.csv");
-                finFuncion();
-                break;*/
 
             case 0:
                 printf("-END-\n");

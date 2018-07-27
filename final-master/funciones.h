@@ -311,7 +311,9 @@ void let_setEstado (eLetra* s, int estado);
 
 int setVocalOConsonante(ArrayList* lista);
 
-ArrayList* funcionLoca(ArrayList* lista, char* cadena);
+ArrayList* funcionLoca(ArrayList* lista, char cadena[]);
+
+int tramite_ordenarLetra(void* letra1, void* letra2);
 
 #endif // FUNCIONES_H_INCLUDED
 
